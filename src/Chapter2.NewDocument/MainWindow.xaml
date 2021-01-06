@@ -1,0 +1,26 @@
+﻿<Window x:Class="Chapter2.NewDocument.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Chapter2.NewDocument"
+        mc:Ignorable="d"
+        Title="NewDocument" Height="450" Width="500">
+    <StackPanel>
+        <GroupBox Header="SldWorks">
+            <Grid Height="100" Margin="5">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Button Height="25" Width="150">Connect to SolidWorks</Button>
+                <TextBox Grid.Column="1" TextWrapping="Wrap"/>
+            </Grid>
+        </GroupBox>
+        <GroupBox Header="ModelDoc2">
+            <Grid>
+                
+            </Grid>
+        </GroupBox>
+    </StackPanel>
+</Window>
