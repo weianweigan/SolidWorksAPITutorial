@@ -5,22 +5,31 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Chapter2.NewDocument"
         mc:Ignorable="d"
-        Title="NewDocument" Height="450" Width="500">
+        Title="New Document" Height="500" Width="400">
     <StackPanel>
-        <GroupBox Header="SldWorks">
-            <Grid Height="100" Margin="5">
+        <GroupBox Margin="2" Header="Connect To SolidWorks" Height="100">
+            <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
-                <Button Height="25" Width="150">Connect to SolidWorks</Button>
-                <TextBox Grid.Column="1" TextWrapping="Wrap"/>
+                <Button Width="150" Height="25" Command="{Binding ConnectToSldWorksCommand}">Connect to SolidWorks</Button>
+                <TextBox Text="{Binding Msg}" Grid.Column="1" TextWrapping="WrapWithOverflow"></TextBox>
             </Grid>
         </GroupBox>
-        <GroupBox Header="ModelDoc2">
-            <Grid>
-                
-            </Grid>
+        <GroupBox Margin="2,10" Header="NewDocument">
+            <StackPanel>
+                <Button Command="{Binding NewPartCommand}" Margin="2" Width="150" Height="25">New PartDoc</Button>
+                <Button Command="{Binding NewAssemblyCommand}" Margin="2" Width="150" Height="25">New AssemblyDoc</Button>
+                <Button Command="{Binding NewDrawingCommand}" Margin="2" Width="150" Height="25">New DrawingDoc</Button>
+            </StackPanel>
+        </GroupBox>
+        <GroupBox Header="OpenDoc">
+            <StackPanel>
+                <Button Margin="2" Width="150" Height="25" Click="Button_Click_4">Open PartDoc</Button>
+                <Button Margin="2" Width="150" Height="25" Click="Button_Click_5">Open AssemblyDoc</Button>
+                <Button Margin="2" Width="150" Height="25" Click="Button_Click_6">Open DrawingDoc</Button>
+            </StackPanel>
         </GroupBox>
     </StackPanel>
 </Window>
