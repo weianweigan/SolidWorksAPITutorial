@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chapter1.ConnectToSw", "Cha
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chapter2.NewDocument", "Chapter2.NewDocument\Chapter2.NewDocument.csproj", "{482A0711-2896-4457-935B-EBBFE3EA3228}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chapter3.PartAutomation", "Chapter3.PartAutomation\Chapter3.PartAutomation.csproj", "{8D6E1610-0569-4675-9552-19A0893EA4F2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -31,6 +33,14 @@ Global
 		{482A0711-2896-4457-935B-EBBFE3EA3228}.Release|Any CPU.Build.0 = Release|Any CPU
 		{482A0711-2896-4457-935B-EBBFE3EA3228}.Release|x64.ActiveCfg = Release|Any CPU
 		{482A0711-2896-4457-935B-EBBFE3EA3228}.Release|x64.Build.0 = Release|Any CPU
+		{8D6E1610-0569-4675-9552-19A0893EA4F2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8D6E1610-0569-4675-9552-19A0893EA4F2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8D6E1610-0569-4675-9552-19A0893EA4F2}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{8D6E1610-0569-4675-9552-19A0893EA4F2}.Debug|x64.Build.0 = Debug|Any CPU
+		{8D6E1610-0569-4675-9552-19A0893EA4F2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8D6E1610-0569-4675-9552-19A0893EA4F2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8D6E1610-0569-4675-9552-19A0893EA4F2}.Release|x64.ActiveCfg = Release|Any CPU
+		{8D6E1610-0569-4675-9552-19A0893EA4F2}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

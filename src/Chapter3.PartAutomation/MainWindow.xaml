@@ -1,0 +1,31 @@
+﻿<Window x:Class="Chapter3.PartAutomation.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Chapter3.PartAutomation"
+        mc:Ignorable="d"
+        Title="零件自动化" Height="450" Width="400">
+    <StackPanel>
+        <GroupBox Header="绘制直线">
+            <Grid Height="120">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="50"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.ColumnSpan="2" VerticalAlignment="Center">起点:0,0</TextBlock>
+                <Label Grid.Row="1">终点X:</Label>
+                <TextBox Name="_xPostion" Grid.Row="1" Height="25" Grid.Column="2"></TextBox>
+                <Label Grid.Row="2">终点Y:</Label>
+                <TextBox x:Name="_yPostion" Grid.Row="2" Height="25" Grid.Column="2"></TextBox>
+                <Button Grid.Row="3" Grid.ColumnSpan="2" Width="75" Click="Button_Click">绘制</Button>
+            </Grid>
+        </GroupBox>
+    </StackPanel>
+</Window>
