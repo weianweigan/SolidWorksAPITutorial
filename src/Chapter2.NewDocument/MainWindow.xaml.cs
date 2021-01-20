@@ -20,14 +20,6 @@ namespace Chapter2.NewDocument
             DataContext = new MainViewModel();
         }
 
-        /// <summary>
-        /// 连接打开的SolidWorks<see cref="MainViewModel.ConectClick"/>
-        /// </summary>
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            
-        }
-
         #region 新建SolidWorks文档
 
         /// <summary>

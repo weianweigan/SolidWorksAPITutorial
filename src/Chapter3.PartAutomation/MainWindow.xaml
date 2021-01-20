@@ -7,6 +7,16 @@
         mc:Ignorable="d"
         Title="零件自动化" Height="450" Width="400">
     <StackPanel>
+        <GroupBox Margin="2" Header="Connect To SolidWorks" Height="100">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Button Width="150" Height="25" Click="Button_Click_1">Connect to SolidWorks</Button>
+                <TextBox Name="msg" Grid.Column="1" TextWrapping="WrapWithOverflow"></TextBox>
+            </Grid>
+        </GroupBox>
         <GroupBox Header="绘制直线">
             <Grid Height="120">
                 <Grid.RowDefinitions>
