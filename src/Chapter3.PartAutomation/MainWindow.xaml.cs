@@ -23,6 +23,9 @@ namespace Chapter3.PartAutomation
             InitializeComponent();            
         }
 
+        /// <summary>
+        /// 连接SolidWorks
+        /// </summary>
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
             var swProcess = Process.GetProcessesByName("SLDWORKS");
@@ -42,6 +45,11 @@ namespace Chapter3.PartAutomation
         /// </summary>
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            if (_swApp == null)
+            {
+                MessageBox.Show("未连接SolidWorks,请先连接SolidWorks");
+            }
+
             //获取当前打开的文档
             var doc = _swApp.Sw.IActiveDoc2;
 
@@ -81,5 +89,83 @@ namespace Chapter3.PartAutomation
             skeMgr.InsertSketch(true);
         }
 
+        /// <summary>
+        /// 执行拉伸凸台
+        /// </summary>
+        private void CreateFeatureClick(object sender, RoutedEventArgs e)
+        {
+            if (_swApp ==null)
+            {
+                MessageBox.Show("未连接SolidWorks");
+                return;
+            }
+
+            var doc = _swApp.Sw.ActiveDoc as IModelDoc2;
+
+            if (doc == null)
+            {
+                MessageBox.Show("没有打开的文档");
+                return;
+            }
+
+            if (doc.GetType() != (int)swDocumentTypes_e.swDocPART)
+            {
+                MessageBox.Show("当前打开不少零件类型的文档");
+                return;
+            }
+
+            doc.WithNoRefresh(() =>
+            {
+                //早绑定到FeatureManager
+                var featMgr = doc.FeatureManager;
+
+                //新建拉伸特征
+                var frontPlane = doc.GetRefPlane().First();
+                frontPlane.Select2(false, 0);
+
+                var skeMgr = doc.SketchManager;
+                skeMgr.InsertSketch(true);
+
+                //绘制一个中心矩形
+                double width = double.Parse(_rectWidth.Text) / 2;
+                _swApp.Sw.WithToggleState(swUserPreferenceToggle_e.swSketchInference, false, () =>
+                  {
+                      skeMgr.CreateCenterRectangle(0, 0, 0, width, width, 0);
+                  });
+
+
+                double depth = double.Parse(_depth.Text);
+                featMgr.FeatureExtrusion3(
+                    Sd: true,//单向拉伸
+                    Flip: false,
+                    Dir: false,
+                    T1: (int)swEndConditions_e.swEndCondBlind,
+                    T2: (int)swEndConditions_e.swEndCondBlind,
+                    D1: depth,
+                    D2: 0,
+                    //拔模参数
+                    Dchk1: false,
+                    Dchk2: false,
+                    Ddir1: false,
+                    Ddir2: false,
+                    Dang1: 0,
+                    Dang2: 0,
+                    // 
+                    OffsetReverse1: false,
+                    OffsetReverse2: false,
+                    TranslateSurface1: false,
+                    TranslateSurface2: false,
+                    //实体和选择
+                    Merge: true,
+                    UseFeatScope: true,
+                    UseAutoSelect: true,
+                    //起始条件
+                    T0: (int)swStartConditions_e.swStartSketchPlane,
+                    StartOffset: 0,
+                    FlipStartOffset: false);
+
+            });
+
+        }
     }
 }

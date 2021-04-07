@@ -1,4 +1,5 @@
 ﻿using SolidWorks.Interop.sldworks;
+using System;
 using System.Collections.Generic;
 
 namespace Chapter3.PartAutomation.Extension
@@ -24,5 +25,39 @@ namespace Chapter3.PartAutomation.Extension
                 feat = feat.GetNextFeature() as IFeature;
             }
         }
+
+        /// <summary>
+        /// 在界面不刷新的情况下执行
+        /// </summary>
+        public static void WithNoRefresh(this IModelDoc2 doc, Action action)
+        {
+            if (doc is null)
+            {
+                throw new ArgumentNullException(nameof(doc));
+            }
+            var activeView = doc.ActiveView as IModelView;
+            var featMgr = doc.FeatureManager;
+            try
+            {
+                activeView.EnableGraphicsUpdate = false;
+
+                featMgr.EnableFeatureTree = false;
+                featMgr.EnableFeatureTreeWindow = false;
+
+                action?.Invoke();
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            finally
+            {
+                activeView.EnableGraphicsUpdate = true;
+                featMgr.EnableFeatureTree = true;
+                featMgr.EnableFeatureTreeWindow = true;
+            }
+        }
     }
+
 }
