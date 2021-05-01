@@ -48,6 +48,7 @@ namespace Chapter3.PartAutomation
             if (_swApp == null)
             {
                 MessageBox.Show("未连接SolidWorks,请先连接SolidWorks");
+                return;
             }
 
             //获取当前打开的文档
@@ -76,6 +77,8 @@ namespace Chapter3.PartAutomation
             var skeMgr = doc.SketchManager;
             skeMgr.InsertSketch(true);
 
+            var ske = skeMgr.ActiveSketch;
+
             //绘制一条直线
             _swApp.Sw.WithToggleState(swUserPreferenceToggle_e.swSketchInference, false, () =>
               {
@@ -87,6 +90,8 @@ namespace Chapter3.PartAutomation
 
             //退出草图
             skeMgr.InsertSketch(true);
+
+            ((IFeature)ske).Name = "草图名称";
         }
 
         /// <summary>
@@ -166,6 +171,56 @@ namespace Chapter3.PartAutomation
 
             });
 
+        }
+
+        private void GetSelectionInfo_BtnClick(object sender, RoutedEventArgs e)
+        {
+            if (_swApp == null)
+            {
+                MessageBox.Show("当前未连接SolidWorks");
+                return;
+            }
+
+            var doc = _swApp.Sw.IActiveDoc2;
+            if (doc == null)
+            {
+                _swApp.ShowMessageBox("当前未打开文档", Xarial.XCad.Base.Enums.MessageBoxIcon_e.Warning);
+                return;
+            }
+
+            //获取选择管理器
+            var seleMgr = doc.ISelectionManager;
+            //获取选择数量
+            var count = seleMgr.GetSelectedObjectCount2(-1);
+            if (count < 1)
+            {
+                MessageBox.Show("当前没有任何选择");
+            }
+
+            var data = new List<string>(count);
+
+            for (int i = 1; i < count+1; i++)
+            {
+                var mark = seleMgr.GetSelectedObjectMark(i);
+                var type = seleMgr.GetSelectedObjectType3(i, mark);
+                var obj = seleMgr.GetSelectedObject6(i, mark);
+
+                //选择的位置
+                var selePostioon = seleMgr.GetSelectionPoint2(i, mark) as double[];
+                string info = selePostioon == null ? $"Index:{i},Mark:{mark},Type:{(swSelectType_e)type}" :
+                    $"Index:{i},Mark:{mark},Type:{(swSelectType_e)type},Postion:{selePostioon[0]},{selePostioon[1]},{selePostioon[2]}";
+
+                if (obj is IFeature feat)
+                {
+                    var featInfo = $"特征名称{feat.Name},特征类型：{feat.GetTypeName2()}";
+
+                    info += featInfo;
+                }
+
+                data.Add(info);
+            }
+
+            _selectionList.ItemsSource = data;
         }
     }
 }

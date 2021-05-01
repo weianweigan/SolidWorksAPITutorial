@@ -17,43 +17,59 @@
                 <TextBox Name="msg" Grid.Column="1" TextWrapping="WrapWithOverflow"></TextBox>
             </Grid>
         </GroupBox>
-        <GroupBox Header="绘制直线">
-            <Grid Height="120">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="30"/>
-                    <RowDefinition Height="30"/>
-                    <RowDefinition Height="30"/>
-                    <RowDefinition Height="30"/>
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="50"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
-                <TextBlock Grid.ColumnSpan="2" VerticalAlignment="Center">起点:0,0</TextBlock>
-                <Label Grid.Row="1">终点X:</Label>
-                <TextBox Name="_xPostion" Grid.Row="1" Height="25" Grid.Column="2"></TextBox>
-                <Label Grid.Row="2">终点Y:</Label>
-                <TextBox x:Name="_yPostion" Grid.Row="2" Height="25" Grid.Column="2"></TextBox>
-                <Button Grid.Row="3" Grid.ColumnSpan="2" Width="75" Click="Button_Click">绘制</Button>
-            </Grid>
-        </GroupBox>
-        <GroupBox Header="拉伸凸台">
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="25"/>
-                    <RowDefinition Height="25"/>
-                    <RowDefinition Height="25"/>
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="50"/>
-                    <ColumnDefinition/>
-                </Grid.ColumnDefinitions>
-                <Label>宽度</Label>
-                <TextBox Text="0.01" Grid.Column="1" Height="23" Name="_rectWidth"/>
-                <Label Grid.Row="1">深度</Label>
-                <TextBox Text="0.01" x:Name="_depth" Grid.Column="1" Height="23" Grid.Row="1"/>
-                <Button Grid.Row="2" Grid.ColumnSpan="2" Height="23" Width="75" Click="CreateFeatureClick">拉伸凸台</Button>
-            </Grid>
-        </GroupBox>
+        <TabControl>
+            <TabItem Header="草图和特征">
+                <StackPanel>
+                    <GroupBox Header="绘制直线">
+                        <Grid Height="120">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="30"/>
+                                <RowDefinition Height="30"/>
+                                <RowDefinition Height="30"/>
+                                <RowDefinition Height="30"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="50"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Grid.ColumnSpan="2" VerticalAlignment="Center">起点:0,0</TextBlock>
+                            <Label Grid.Row="1">终点X:</Label>
+                            <TextBox Name="_xPostion" Grid.Row="1" Height="25" Grid.Column="2"></TextBox>
+                            <Label Grid.Row="2">终点Y:</Label>
+                            <TextBox x:Name="_yPostion" Grid.Row="2" Height="25" Grid.Column="2"></TextBox>
+                            <Button Grid.Row="3" Grid.ColumnSpan="2" Width="75" Click="Button_Click">绘制</Button>
+                        </Grid>
+                    </GroupBox>
+                    <GroupBox Header="拉伸凸台">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="25"/>
+                                <RowDefinition Height="25"/>
+                                <RowDefinition Height="25"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="50"/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <Label>宽度</Label>
+                            <TextBox Text="0.01" Grid.Column="1" Height="23" Name="_rectWidth"/>
+                            <Label Grid.Row="1">深度</Label>
+                            <TextBox Text="0.01" x:Name="_depth" Grid.Column="1" Height="23" Grid.Row="1"/>
+                            <Button Grid.Row="2" Grid.ColumnSpan="2" Height="23" Width="75" Click="CreateFeatureClick">拉伸凸台</Button>
+                        </Grid>
+                    </GroupBox>
+                </StackPanel>
+            </TabItem>
+            <TabItem Header="选择">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="150"/>
+                        <RowDefinition Height="30"/>
+                    </Grid.RowDefinitions>
+                    <ListBox Grid.Row="0" x:Name="_selectionList"/>
+                    <Button Grid.Row="1" Click="GetSelectionInfo_BtnClick">获取选择对象信息</Button>
+                </Grid>
+            </TabItem>
+        </TabControl>
     </StackPanel>
 </Window>
