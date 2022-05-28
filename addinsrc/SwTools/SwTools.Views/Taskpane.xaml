@@ -1,0 +1,43 @@
+﻿<UserControl x:Class="SwTools.Views.Taskpane"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:SwTools.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="700" d:DesignWidth="300"
+             Background="#F7F7F7"
+             FontFamily="{DynamicResource {x:Static SystemFonts.CaptionFontFamilyKey}}">
+    <UserControl.Resources>
+        <ResourceDictionary Source="pack://application:,,,/SwTools.Views;component/Themes/Generic.xaml"/>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="7*"/>
+            <RowDefinition Height="3*"/>
+        </Grid.RowDefinitions>
+        <ToolBar>
+            <Button>
+                <Image Source="./Icons/library.png"/>
+            </Button>
+        </ToolBar>
+        <Separator VerticalAlignment="Bottom"/>
+        <TreeView Grid.Row="1"
+                  BorderThickness="0"
+                  Background="#f7f7f7">
+            <TreeViewItem Header="Library" 
+                          IsExpanded="True">
+                <TreeViewItem Header="Child1"/>
+                <TreeViewItem Header="Child2"/>
+
+            </TreeViewItem>
+        </TreeView>
+        <GridSplitter Grid.Row="2" 
+                      VerticalAlignment="Top"
+                      Height="2"
+                      HorizontalAlignment="Stretch"
+                      ResizeDirection="Rows"
+                      Background="Gray"/>
+    </Grid>
+</UserControl>

@@ -1,0 +1,43 @@
+﻿<Window x:Class="SwTools.Views.TestWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SwTools.Views"
+        mc:Ignorable="d"
+        ShowInTaskbar="False"
+        WindowStartupLocation="CenterOwner"
+        Title="TestWindow" Height="450" Width="400"
+        Background="#f7f7f7">
+    <Window.Resources>
+        <ResourceDictionary Source="pack://application:,,,/SwTools.Views;component/Themes/Generic.xaml"/>
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+        <StackPanel>
+            <Expander Header="参数"
+                  Style="{StaticResource TaskPane_ExpanderStyle}"
+                  IsExpanded="True">
+                <StackPanel Margin="5">
+                    <TextBlock Margin="5" Text="物料编码"/>
+                </StackPanel>
+            </Expander>
+        </StackPanel>
+        <Separator VerticalAlignment="Bottom"/>
+        <Grid Grid.Row="1">
+            <Button Content="确定" 
+                    HorizontalAlignment="Right"
+                    Margin="0,0,100,0"
+                    Width="75" 
+                    Height="23"/>
+            <Button Content="取消" 
+                    HorizontalAlignment="Right"
+                    Margin="0,0,15,0"
+                    Width="75" 
+                    Height="23"/>
+        </Grid>
+    </Grid>
+</Window>

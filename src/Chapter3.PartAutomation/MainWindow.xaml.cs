@@ -219,8 +219,133 @@ namespace Chapter3.PartAutomation
 
                 data.Add(info);
             }
-
+            
             _selectionList.ItemsSource = data;
+        }
+
+        private void GetCusProperties_BtnClick(object sender, RoutedEventArgs e)
+        {
+            if (_swApp == null)
+            {
+                MessageBox.Show("当前未连接SolidWorks");
+                return;
+            }
+
+            var doc = _swApp.Sw.IActiveDoc2;
+            if (doc == null)
+            {
+                _swApp.ShowMessageBox("当前未打开文档", Xarial.XCad.Base.Enums.MessageBoxIcon_e.Warning);
+                return;
+            }
+
+            var cusMgr = doc.Extension.CustomPropertyManager[""];
+
+            object names = new object(), 
+                values = new object(), 
+                types = new object(),
+                resolved = new object(), 
+                links = new object();
+
+            cusMgr.GetAll3(ref names, ref types, ref values, ref resolved, ref links);
+
+            var cusNames = names as string[];
+            var cusValues = values as string[];
+            var cusTypes = (types as int[]).Select(p => (swCustomInfoType_e)p).ToArray();
+
+            var list = new List<string>(); 
+
+            for (int i = 0; i < cusNames.Length; i++)
+            {
+                var name = cusNames[i];
+                var type = cusTypes[i];
+                var value = cusValues[i];
+
+                var info = $"Name:{name},Type:{type},Value:{value}";
+                list.Add(info);
+            }
+            _propertiesList.ItemsSource = list;
+        }
+
+        private void AddCusProperty_BtnClick(object sender, RoutedEventArgs e)
+        {
+            if (_swApp == null)
+            {
+                MessageBox.Show("当前未连接SolidWorks");
+                return;
+            }
+
+            var doc = _swApp.Sw.IActiveDoc2;
+            if (doc == null)
+            {
+                _swApp.ShowMessageBox("当前未打开文档", Xarial.XCad.Base.Enums.MessageBoxIcon_e.Warning);
+                return;
+            }
+
+            var cusMgr = doc.Extension.CustomPropertyManager[""];
+
+            var result = cusMgr.Add3("Test", (int)swCustomInfoType_e.swCustomInfoText, "Test", (int)swCustomPropertyAddOption_e.swCustomPropertyDeleteAndAdd);
+            var addResult = (swCustomInfoAddResult_e)result;
+
+            if (addResult != swCustomInfoAddResult_e.swCustomInfoAddResult_AddedOrChanged)
+            {
+                MessageBox.Show($"添加失败，失败原因：{addResult}");
+            }
+        }
+
+        private void DeleteCusProperty_BtnClick(object sender, RoutedEventArgs e)
+        {
+            if (_swApp == null)
+            {
+                MessageBox.Show("当前未连接SolidWorks");
+                return;
+            }
+
+            var doc = _swApp.Sw.IActiveDoc2;
+            if (doc == null)
+            {
+                _swApp.ShowMessageBox("当前未打开文档", Xarial.XCad.Base.Enums.MessageBoxIcon_e.Warning);
+                return;
+            }
+
+            var cusMgr = doc.Extension.CustomPropertyManager[""];
+
+            var result =(swCustomInfoDeleteResult_e)cusMgr.Delete2("Test");
+
+            if (result != swCustomInfoDeleteResult_e.swCustomInfoDeleteResult_OK)
+            {
+                MessageBox.Show($"删除自定义属性：Test 失败，原因：{result}");
+            }
+        }
+
+        private void GetEquation_BtnClick(object sender, RoutedEventArgs e)
+        {
+            if (_swApp == null)
+            {
+                MessageBox.Show("当前未连接SolidWorks");
+                return;
+            }
+
+            var doc = _swApp.Sw.IActiveDoc2;
+            if (doc == null)
+            {
+                _swApp.ShowMessageBox("当前未打开文档", Xarial.XCad.Base.Enums.MessageBoxIcon_e.Warning);
+                return;
+            }
+
+            //获取方程式管理
+            var equMgr = doc.GetEquationMgr();
+
+            var count = equMgr.GetCount();
+
+            List<string> equations = new List<string>(count);
+
+            for (int i = 0; i < count; i++)
+            {
+                var equation = equMgr.Equation[i];
+                equations.Add(equation);
+            }
+
+            _equationList.ItemsSource = equations;
         }
     }
 }

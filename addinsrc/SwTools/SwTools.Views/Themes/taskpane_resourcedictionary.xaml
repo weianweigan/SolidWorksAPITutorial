@@ -1,0 +1,357 @@
+<!-- $c6 SM  10/13/10 PRJ 21682. Chnages to support interface brightness theme and new 2016 style UI. -->
+<!-- $c5 PSB 04/08/10 SPR 549141 Make message area in taskpane have new "softer" colors -->
+<!-- $c4 DPS 06/12/09 SPR 500755: backout c3 -->
+<!-- $c3 DPS 06/08/09 SPR 473552: fix list box colors -->
+<!-- $c2 DPS 03/27/08 moved tooltip style to common dictionary -->
+<!-- $c1 SM  03/19/08 created -->
+<ResourceDictionary
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:d="http://schemas.microsoft.com/expression/blend/2006" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d">
+  <LinearGradientBrush x:Key="TaskPane_TitleBannerBrush" EndPoint="1,0.5" StartPoint="0,0.5">
+    <GradientStop Color="#FFB0BBC8" Offset="0"/>
+    <GradientStop Color="#FFE8EBEE" Offset="1"/>
+  </LinearGradientBrush>
+  <SolidColorBrush x:Key="TaskPane_BGBrush" Color="#FFF7F7F7"/>
+
+    <SolidColorBrush x:Key="TaskPane_GBBorder" Color="#FF9CA2B9"/>
+    <SolidColorBrush x:Key="TaskPane_GBbgBrush" Color="#FFF7F7F7"/>
+    <SolidColorBrush x:Key="TaskPane_GBHeaderBrush" Color="#FFF7F7F7"/>
+    <SolidColorBrush x:Key="TaskPane_EnabledTextBrush" Color="#FF000000"/>
+
+    <!--<LinearGradientBrush x:Key="TaskPane_GBbgBrush" EndPoint="0,0" StartPoint="0,1">
+    <GradientStop Color="#FFE9EBF5" Offset="0"/>
+    <GradientStop Color="#FFDEE2ED" Offset="1"/>
+    <GradientStop Color="#FFC9D1E0" Offset="0.893"/>
+    <GradientStop Color="#FFC5CBDC" Offset="0.885"/>
+  </LinearGradientBrush>
+    <LinearGradientBrush x:Key="TaskPane_GBHeaderBrush" EndPoint="0,0" StartPoint="0,1">
+        <GradientStop Color="#FFCBD1DE" Offset="0"/>
+        <GradientStop Color="#FFF5F5F8" Offset="1"/>
+        <GradientStop Color="#FFB9BFCB" Offset="0.521"/>
+        <GradientStop Color="#FFCDD1DA" Offset="0.526"/>
+    </LinearGradientBrush>-->
+    <SolidColorBrush x:Key="TaskPane_TextboxBorder" Color="#FF848CA2"/>
+  <LinearGradientBrush x:Key="TopBanner_BGBrush" EndPoint="0,0" StartPoint="0,1">
+    <GradientStop Color="#FFACB0C3" Offset="0"/>
+    <GradientStop Color="#FFEEF1FD" Offset="1"/>
+  </LinearGradientBrush>
+  <LinearGradientBrush x:Key="ButtonNormalBackgroundFill" EndPoint="0.5,1" StartPoint="0.5,0">
+    <GradientStop Color="White" Offset="0"/>
+    <GradientStop Color="#FFE3E5F0" Offset="0.5"/>
+    <GradientStop Color="#FFC6C5D7" Offset="1.0"/>
+  </LinearGradientBrush>
+  <!-- Resource dictionary entries should be defined here. -->
+  <LinearGradientBrush x:Key="ExpanderShadowFill" EndPoint="0,1" StartPoint="0,0">
+    <GradientStop Color="Transparent" Offset="0.5"/>
+    <GradientStop Color="#30111111" Offset="1"/>
+  </LinearGradientBrush>
+  <Style x:Key="ExpanderDownHeaderStyle" TargetType="{x:Type ToggleButton}">
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="{x:Type ToggleButton}">
+          <Border BorderBrush="{DynamicResource TaskPane_GBBorder}" BorderThickness="0,1,0,0" CornerRadius="0,0,0,0" Padding="{TemplateBinding Padding}" Background="{DynamicResource TaskPane_GBHeaderBrush}">
+            <Grid SnapsToDevicePixels="False" Background="Transparent" Height="20">
+              <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="20"/>
+              </Grid.ColumnDefinitions>
+              <Grid HorizontalAlignment="Center" x:Name="arrow" VerticalAlignment="Center" Grid.Column="1">
+                <Path SnapsToDevicePixels="false" Stroke="#666" StrokeThickness="2" x:Name="arrow2_Copy" Data="M 0,1.5 L 5,6 L 10,1.5" RenderTransformOrigin="0.5,0.5" d:LayoutOverrides="Width, Height" HorizontalAlignment="Left" VerticalAlignment="Top">
+                  <Path.RenderTransform>
+                    <TransformGroup>
+                      <ScaleTransform ScaleX="1" ScaleY="1"/>
+                      <SkewTransform AngleX="0" AngleY="0"/>
+                      <RotateTransform Angle="0"/>
+                      <TranslateTransform X="0" Y="0"/>
+                    </TransformGroup>
+                  </Path.RenderTransform>
+                </Path>
+                <!--Path SnapsToDevicePixels="false" Stroke="#666" StrokeThickness="2" x:Name="arrow2" Data="M 1,1.5 L 4.5,5 L 8,1.5" d:LayoutOverrides="Width, Height" HorizontalAlignment="Left" Margin="0,5,0,0" VerticalAlignment="Top"/-->
+                  
+              </Grid>
+              <ContentPresenter SnapsToDevicePixels="True" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Column="0" RecognizesAccessKey="True" Margin="5,0,0,0"/>
+            </Grid>
+          </Border>
+          <ControlTemplate.Triggers>
+            <Trigger Property="IsChecked" Value="true">
+              <!--<Setter Property="Data" TargetName="arrow2" Value="M 1,4.5  L 4.5,1  L 8,4.5"/>-->
+              <Setter Property="RenderTransform" TargetName="arrow2_Copy">
+                <Setter.Value>
+                  <TransformGroup>
+                    <ScaleTransform ScaleX="1" ScaleY="1"/>
+                    <SkewTransform AngleX="0" AngleY="0"/>
+                    <RotateTransform Angle="180"/>
+                    <TranslateTransform X="0" Y="0"/>
+                  </TransformGroup>
+                </Setter.Value>
+              </Setter>
+              <Setter Property="Margin" TargetName="arrow2_Copy" Value="0.3,0,0,0"/>
+            </Trigger>
+            <Trigger Property="IsMouseOver" Value="true">
+              <!--<Setter Property="Stroke" TargetName="arrow2" Value="#222"/>-->
+              <Setter Property="Stroke" TargetName="arrow2_Copy" Value="#FF222222"/>
+            </Trigger>
+          </ControlTemplate.Triggers>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+  <Style x:Key="ExpanderUpHeaderStyle" TargetType="{x:Type ToggleButton}">
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="{x:Type ToggleButton}">
+          <Border Padding="{TemplateBinding Padding}">
+            <Grid SnapsToDevicePixels="False" Background="Transparent">
+              <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="19"/>
+                <ColumnDefinition Width="*"/>
+              </Grid.ColumnDefinitions>
+              <Grid>
+                <Grid.LayoutTransform>
+                  <TransformGroup>
+                    <TransformGroup.Children>
+                      <TransformCollection>
+                        <RotateTransform Angle="180"/>
+                      </TransformCollection>
+                    </TransformGroup.Children>
+                  </TransformGroup>
+                </Grid.LayoutTransform>
+                <Ellipse Fill="{DynamicResource ButtonNormalBackgroundFill}" Stroke="DarkGray" HorizontalAlignment="Center" x:Name="circle" VerticalAlignment="Center" Width="19" Height="19"/>
+                <Ellipse Visibility="Hidden" Fill="{DynamicResource ExpanderShadowFill}" HorizontalAlignment="Center" x:Name="shadow" VerticalAlignment="Center" Width="17" Height="17"/>
+                <Path SnapsToDevicePixels="false" Stroke="#666" StrokeThickness="2" HorizontalAlignment="Center" x:Name="arrow" VerticalAlignment="Center" Data="M 1,1.5  L 4.5,5  L 8,1.5"/>
+              </Grid>
+              <ContentPresenter SnapsToDevicePixels="True" HorizontalAlignment="Left" Margin="4,0,0,0" VerticalAlignment="Center" Grid.Column="1" RecognizesAccessKey="True"/>
+            </Grid>
+          </Border>
+          <ControlTemplate.Triggers>
+            <Trigger Property="IsChecked" Value="true">
+              <Setter Property="Data" TargetName="arrow" Value="M 1,4.5  L 4.5,1  L 8,4.5"/>
+            </Trigger>
+            <Trigger Property="IsMouseOver" Value="true">
+              <Setter Property="Stroke" TargetName="circle" Value="#666"/>
+              <Setter Property="Stroke" TargetName="arrow" Value="#222"/>
+              <Setter Property="Visibility" TargetName="shadow" Value="Visible"/>
+            </Trigger>
+          </ControlTemplate.Triggers>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+  <Style x:Key="ExpanderRightHeaderStyle" TargetType="{x:Type ToggleButton}">
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="{x:Type ToggleButton}">
+          <Border Padding="{TemplateBinding Padding}">
+            <Grid SnapsToDevicePixels="False" Background="Transparent">
+              <Grid.RowDefinitions>
+                <RowDefinition Height="19"/>
+                <RowDefinition Height="*"/>
+              </Grid.RowDefinitions>
+              <Grid>
+                <Grid.LayoutTransform>
+                  <TransformGroup>
+                    <TransformGroup.Children>
+                      <TransformCollection>
+                        <RotateTransform Angle="-90"/>
+                      </TransformCollection>
+                    </TransformGroup.Children>
+                  </TransformGroup>
+                </Grid.LayoutTransform>
+                <Ellipse Fill="{DynamicResource ButtonNormalBackgroundFill}" Stroke="DarkGray" HorizontalAlignment="Center" x:Name="circle" VerticalAlignment="Center" Width="19" Height="19"/>
+                <Ellipse Visibility="Hidden" Fill="{DynamicResource ExpanderShadowFill}" HorizontalAlignment="Center" x:Name="shadow" VerticalAlignment="Center" Width="17" Height="17"/>
+                <Path SnapsToDevicePixels="false" Stroke="#666" StrokeThickness="2" HorizontalAlignment="Center" x:Name="arrow" VerticalAlignment="Center" Data="M 1,1.5  L 4.5,5  L 8,1.5"/>
+              </Grid>
+              <ContentPresenter SnapsToDevicePixels="True" HorizontalAlignment="Center" Margin="0,4,0,0" VerticalAlignment="Top" Grid.Row="1" RecognizesAccessKey="True"/>
+            </Grid>
+          </Border>
+          <ControlTemplate.Triggers>
+            <Trigger Property="IsChecked" Value="true">
+              <Setter Property="Data" TargetName="arrow" Value="M 1,4.5  L 4.5,1  L 8,4.5"/>
+            </Trigger>
+            <Trigger Property="IsMouseOver" Value="true">
+              <Setter Property="Stroke" TargetName="circle" Value="#666"/>
+              <Setter Property="Stroke" TargetName="arrow" Value="#222"/>
+              <Setter Property="Visibility" TargetName="shadow" Value="Visible"/>
+            </Trigger>
+          </ControlTemplate.Triggers>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+  <Style x:Key="ExpanderLeftHeaderStyle" TargetType="{x:Type ToggleButton}">
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="{x:Type ToggleButton}">
+          <Border Padding="{TemplateBinding Padding}">
+            <Grid SnapsToDevicePixels="False" Background="Transparent">
+              <Grid.RowDefinitions>
+                <RowDefinition Height="19"/>
+                <RowDefinition Height="*"/>
+              </Grid.RowDefinitions>
+              <Grid>
+                <Grid.LayoutTransform>
+                  <TransformGroup>
+                    <TransformGroup.Children>
+                      <TransformCollection>
+                        <RotateTransform Angle="90"/>
+                      </TransformCollection>
+                    </TransformGroup.Children>
+                  </TransformGroup>
+                </Grid.LayoutTransform>
+                <Ellipse Fill="{DynamicResource ButtonNormalBackgroundFill}" Stroke="DarkGray" HorizontalAlignment="Center" x:Name="circle" VerticalAlignment="Center" Width="19" Height="19"/>
+                <Ellipse Visibility="Hidden" Fill="{DynamicResource ExpanderShadowFill}" HorizontalAlignment="Center" x:Name="shadow" VerticalAlignment="Center" Width="17" Height="17"/>
+                <Path SnapsToDevicePixels="false" Stroke="#666" StrokeThickness="2" HorizontalAlignment="Center" x:Name="arrow" VerticalAlignment="Center" Data="M 1,1.5 L 4.5,5 L 8,1.5"/>
+              </Grid>
+              <ContentPresenter SnapsToDevicePixels="True" HorizontalAlignment="Center" Margin="0,4,0,0" VerticalAlignment="Top" Grid.Row="1" RecognizesAccessKey="True"/>
+            </Grid>
+          </Border>
+          <ControlTemplate.Triggers>
+            <Trigger Property="IsChecked" Value="true">
+              <Setter Property="Data" TargetName="arrow" Value="M 1,4.5  L 4.5,1  L 8,4.5"/>
+            </Trigger>
+            <Trigger Property="IsMouseOver" Value="true">
+              <Setter Property="Stroke" TargetName="circle" Value="#666"/>
+              <Setter Property="Stroke" TargetName="arrow" Value="#222"/>
+              <Setter Property="Visibility" TargetName="shadow" Value="Visible"/>
+            </Trigger>
+          </ControlTemplate.Triggers>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+  <Style x:Key="TaskPane_StackPanelStyle" TargetType="{x:Type StackPanel}">
+    <Setter Property="Background" Value="{DynamicResource TopBanner_BGBrush}"/>
+    <Setter Property="BitmapEffect">
+      <Setter.Value>
+        <DropShadowBitmapEffect ShadowDepth="3"/>
+      </Setter.Value>
+    </Setter>
+  </Style>
+  <Style x:Key="TaskPaneTitle_TextBlockStyle" TargetType="{x:Type TextBlock}">
+    <Setter Property="TextWrapping" Value="NoWrap"/>
+    <Setter Property="TextTrimming" Value="None"/>
+    <Setter Property="HorizontalAlignment" Value="Stretch"/>
+    <Setter Property="TextAlignment" Value="Center"/>
+    <Setter Property="FontSize" Value="12"/>
+    <Setter Property="FontWeight" Value="Bold"/>
+  </Style>
+  <Style x:Key="ExpanderHeaderFocusVisual">
+    <Setter Property="Control.Template">
+      <Setter.Value>
+        <ControlTemplate>
+          <Border>
+            <Rectangle SnapsToDevicePixels="true" Stroke="Black" StrokeDashArray="1 2" StrokeThickness="1" Margin="0"/>
+          </Border>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+  <Style x:Key="TaskPane_ExpanderStyle" TargetType="{x:Type Expander}">
+    <!--Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/-->
+    <Setter Property="Foreground" Value="{DynamicResource TaskPane_EnabledTextBrush}"/>
+    <Setter Property="Background" Value="Transparent"/>
+    <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+    <Setter Property="VerticalContentAlignment" Value="Stretch"/>
+    <Setter Property="BorderBrush" Value="Transparent"/>
+    <Setter Property="BorderThickness" Value="1"/>
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="{x:Type Expander}">
+          <Border SnapsToDevicePixels="true" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="0" Margin="8,4,8,4">
+            <DockPanel>
+                            <ToggleButton FocusVisualStyle="{StaticResource ExpanderHeaderFocusVisual}" MinHeight="0" MinWidth="0" x:Name="HeaderSite" Style="{StaticResource ExpanderDownHeaderStyle}" Content="{TemplateBinding Header}" ContentTemplate="{TemplateBinding HeaderTemplate}" ContentTemplateSelector="{TemplateBinding HeaderTemplateSelector}" FontStretch="{TemplateBinding FontStretch}" HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" Padding="{TemplateBinding Padding}" VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}" DockPanel.Dock="Top" IsChecked="{Binding Path=IsExpanded, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}" Background="{x:Null}" BorderBrush="{x:Null}" FontSize="11" FontWeight="Bold" Foreground="{DynamicResource TaskPane_EnabledTextBrush}"/>
+              <Border x:Name="contentBG" DockPanel.Dock="Bottom" BorderBrush="{DynamicResource TaskPane_GBBorder}" BorderThickness="0,0,0,0" CornerRadius="0,0,0,0" Background="{DynamicResource TaskPane_GBbgBrush}" Visibility="Collapsed">
+                <ContentPresenter Focusable="false" Visibility="Collapsed" x:Name="ExpandSite"/>
+              </Border>
+            </DockPanel>
+          </Border>
+          <ControlTemplate.Triggers>
+            <Trigger Property="IsExpanded" Value="true">
+              <Setter Property="Visibility" TargetName="ExpandSite" Value="Visible"/>
+              <Setter Property="Visibility" TargetName="contentBG" Value="Visible"/>
+            </Trigger>
+            <Trigger Property="IsEnabled" Value="false">
+              <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}"/>
+            </Trigger>
+          </ControlTemplate.Triggers>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+  <Style x:Key="TaskPane_LabelStyle" TargetType="{x:Type Label}">
+    <Setter Property="Foreground" Value="{DynamicResource TaskPane_EnabledTextBrush}"/>
+    <Setter Property="Background" Value="Transparent"/>
+    <Setter Property="Padding" Value="5"/>
+    <Setter Property="HorizontalContentAlignment" Value="Left"/>
+    <Setter Property="VerticalContentAlignment" Value="Top"/>
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="{x:Type Label}">
+          <Border SnapsToDevicePixels="true" Margin="0,0,0,5" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
+            <ContentPresenter SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" RecognizesAccessKey="True"/>
+          </Border>
+          <ControlTemplate.Triggers>
+            <Trigger Property="IsEnabled" Value="false">
+              <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}"/>
+            </Trigger>
+          </ControlTemplate.Triggers>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+  <SolidColorBrush x:Key="ListBorder" Color="#FFA5ACB2"/>
+  <Style x:Key="TaskPane_TextBoxStyle" TargetType="{x:Type TextBox}">
+    <Setter Property="Background" Value="{DynamicResource {x:Static SystemColors.WindowBrushKey}}"/>
+    <Setter Property="BorderBrush" Value="{StaticResource ListBorder}"/>
+    <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+    <Setter Property="KeyboardNavigation.TabNavigation" Value="None"/>
+    <Setter Property="BorderThickness" Value="1"/>
+    <Setter Property="HorizontalContentAlignment" Value="Left"/>
+    <Setter Property="Padding" Value="2"/>
+    <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+    <Setter Property="AllowDrop" Value="true"/>
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="{x:Type TextBox}">
+          <Border SnapsToDevicePixels="true" x:Name="Bd" Background="{TemplateBinding Background}" BorderBrush="{DynamicResource TaskPane_TextboxBorder}" BorderThickness="{TemplateBinding BorderThickness}">
+            <ScrollViewer SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" x:Name="PART_ContentHost"/>
+          </Border>
+          <ControlTemplate.Triggers>
+            <Trigger Property="IsEnabled" Value="false">
+              <Setter Property="Background" TargetName="Bd" Value="{DynamicResource {x:Static SystemColors.ControlBrushKey}}"/>
+              <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}"/>
+            </Trigger>
+          </ControlTemplate.Triggers>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+  <Style x:Key="TaskPane_Control_StackPanelStyle" TargetType="{x:Type StackPanel}">
+    <Setter Property="Margin" Value="10,5,10,5"/>
+  </Style>
+  <SolidColorBrush x:Key="StackButtonDivider_Brush" Color="#FF5E6474"/>
+  <LinearGradientBrush x:Key="MorePropButton_BackdropBrush" EndPoint="0.5,1" StartPoint="0.5,0">
+    <GradientStop Color="#FF707484" Offset="0"/>
+    <GradientStop Color="#FF9196A6" Offset="1"/>
+  </LinearGradientBrush>
+  <SolidColorBrush x:Key="MessageBG_Brush" Color="#FFFFFF80"/>
+
+  <Style TargetType="{x:Type RadioButton}">
+     <Setter Property="Foreground" Value="{DynamicResource TaskPane_EnabledTextBrush}"/>
+     <Style.Triggers>
+         <Trigger Property="IsEnabled" Value="false">
+             <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}"/>
+         </Trigger>
+     </Style.Triggers>
+  </Style>
+
+  <Style TargetType="{x:Type CheckBox}">
+        <Setter Property="Foreground" Value="{DynamicResource TaskPane_EnabledTextBrush}"/>
+        <Style.Triggers>
+            <Trigger Property="IsEnabled" Value="false">
+                <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}"/>
+            </Trigger>
+        </Style.Triggers>
+   </Style>
+
+</ResourceDictionary>

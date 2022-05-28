@@ -70,6 +70,31 @@
                     <Button Grid.Row="1" Click="GetSelectionInfo_BtnClick">获取选择对象信息</Button>
                 </Grid>
             </TabItem>
+            <TabItem Header="自定义属性">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="150"/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="30"/>
+                    </Grid.RowDefinitions>
+                    <ListBox Name="_propertiesList"/>
+                    <Button Grid.Row="1" Click="GetCusProperties_BtnClick">获取自定义属性</Button>
+                    <Button Grid.Row="2" Click="AddCusProperty_BtnClick">添加测试属性</Button>
+                    <Button Grid.Row="3" Click="DeleteCusProperty_BtnClick">删除测试属性</Button>
+                </Grid>
+                
+            </TabItem>
+            <TabItem Header="方程式">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="150"/>
+                        <RowDefinition Height="30"/>
+                    </Grid.RowDefinitions>
+                    <ListBox x:Name="_equationList"></ListBox>
+                    <Button Grid.Row="1" Height="23" Click="GetEquation_BtnClick">获取方程式</Button>
+                </Grid>
+            </TabItem>
         </TabControl>
     </StackPanel>
 </Window>

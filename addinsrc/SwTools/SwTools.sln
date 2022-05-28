@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.32328.378
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SwTools", "SwTools\SwTools.csproj", "{B7AD0BA2-AE15-4CBD-B53D-9766A8E87FF8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SwTools.Views", "SwTools.Views\SwTools.Views.csproj", "{56A8D7CB-52C9-4804-A372-544BA462FC43}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B7AD0BA2-AE15-4CBD-B53D-9766A8E87FF8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B7AD0BA2-AE15-4CBD-B53D-9766A8E87FF8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B7AD0BA2-AE15-4CBD-B53D-9766A8E87FF8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B7AD0BA2-AE15-4CBD-B53D-9766A8E87FF8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{56A8D7CB-52C9-4804-A372-544BA462FC43}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{56A8D7CB-52C9-4804-A372-544BA462FC43}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{56A8D7CB-52C9-4804-A372-544BA462FC43}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{56A8D7CB-52C9-4804-A372-544BA462FC43}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {76ECE202-1416-4B3C-96C6-9C7326898664}
+	EndGlobalSection
+EndGlobal
